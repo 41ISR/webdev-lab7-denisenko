@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom"
+import { useUserStore } from "../store/useUserStore"
 
 const NavBar = () => {
+    const { token } = useUserStore()
     return (
         <div className="navbar">
             <div className="navbar-container">
@@ -9,6 +11,16 @@ const NavBar = () => {
                     <li>
                         <Link to={"/"}>Домой</Link>
                     </li>
+                    {!token ? (
+                        <li>
+                            <Link to={"/singin"}>Войти</Link>
+                        </li>
+                    ) : (
+                        <li>
+                            <Link to={"/logout"}>Выйти</Link>
+                        </li>
+                    )
+                    }
                 </ul>
             </div>
         </div>
